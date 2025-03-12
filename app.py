@@ -60,16 +60,14 @@ def chatbot():
     predicted_answer = model.predict(question_vectorized)[0]
 
     # Jika model tidak yakin, gunakan Fuzzy Matching
-    if max_prob < 0.4:
+    if max_prob < 0.5:
         best_match, score, _ = process.extractOne(question, df["Question"])
 
         # Jika skor Fuzzy Matching cukup tinggi (misalnya > 70)
         if score > 70:
             matched_answer = df[df["Question"] == best_match]["Answer"].values[0]
         else:
-            matched_answer = (
-                "Maaf, Aku hanya bisa jawab pertanyaan umum tentang Green Jobs :("
-            )
+            matched_answer = "Maaf, Aku hanya bisa jawab pertanyaan umum tentang Green Jobs & Green Economy :("
     else:
         matched_answer = predicted_answer
 
