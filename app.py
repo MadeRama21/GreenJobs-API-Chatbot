@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -25,6 +26,7 @@ joblib.dump(vectorizer, "vectorizer.pkl")
 
 # Setup Flask API
 app = Flask(__name__)
+CORS(app) 
 
 
 @app.route("/chatbot", methods=["POST"])
