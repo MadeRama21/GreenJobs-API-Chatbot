@@ -62,7 +62,7 @@ def chatbot():
     predicted_answer = model.predict(question_vectorized)[0]
 
     # Jika model tidak yakin, gunakan Fuzzy Matching
-    if max_prob < 0.5:
+    if max_prob < 0.4:
         best_match, score, _ = process.extractOne(question, df["Question"])
 
         # Jika skor Fuzzy Matching cukup tinggi (misalnya > 70)
